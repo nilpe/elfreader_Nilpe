@@ -145,7 +145,7 @@ fn main() {
     print_elfheader(&target_file_header);
     let mut self_file = File::open("/proc/self/exe").unwrap();
     let self_header = parse_elfheader(&mut self_file);
-    if (target_file_header.e_ident[4] == self_header.e_ident[4])
+    if (target_file_header.e_ident[4] <= self_header.e_ident[4])
         && (target_file_header.e_ident[5] == self_header.e_ident[5])
         && (target_file_header.e_ident[7] == self_header.e_ident[7])
         && (target_file_header.e_machine == self_header.e_machine)
